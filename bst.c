@@ -65,7 +65,7 @@ BSTREE insert(BSTREE root, int number)
 BSTREE find(BSTREE root, int number)
 {
     //ADD YOUR CODE HERE. DON'T FORGET TO RETURN SOMETHING
-	BSTREE* current = root;
+	BSTREE current = root;
 
 	while(current != NULL){
 		if (current->data != number){
