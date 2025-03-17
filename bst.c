@@ -56,8 +56,58 @@ BSTREE insert(BSTREE root, int number)
 		return root;
 	}
 	//ADD YOUR CODE HERE FOR THE REST OF THIS FUNCTION. DON'T FORGET TO RETURN SOMETHING
+	BSTREE current = root; //to keep track of which node we are currently at 
+	BSTREE parent = NULL; // to keep track of the previos node for when we find an empty child
 
+	//while loop 
+	while(current != NULL){
+		parent = current; // sets th parent pointer to current
+		if (current->data > number){  // check if number is smaller than current node
+			//move to the left child 
+			current = current->left;
+		}elif (current->data < number){ // check if number is bigger than current node
+			//move to the right child
+			current = current->right;
+		}elif (current->data == number){ // check is number is the same as the current node
+			return root; // if same return root so we done insert duplicates. 
+		}
+	}
+
+	//after we find an null child insert number to parent left or right child
+	// first we have to create the node for the new number 
+	BSTREE newNode = (BSTREE)malloc(sizeof(struct node));
+	newNode->data = number;
+	newNode->left = NULL;
+	newNode->right = NULL;
+
+	if (parent->data > number){
+		parent->left = newNode; // insert new node as left child of parent if number is smaller
+	}else {
+		parent->right = newNode; // insert new node as right child of parent if number is bigger
+	}
+
+	
 }
+
+/* another version that uses recursion
+BSTREE currentRoot = root; //this variable symbolizes the the current node 
+    BSTREE Numparent = NULL; //this variable symbolizes th parent of the number being inserted 
+	
+	while(currentRoot != NULL){
+
+        Numparent = currentRoot;
+
+        if (number < currentRoot->data){
+            root->left = insert(root->left, number);
+        }
+        else if (number > currentRoot->data){
+            root->right = insert(root->right, number);
+        }
+    
+        return root;
+
+    }
+*/
 
 
 //This function returns a pointer to the node in the tree rooted at "root"
@@ -65,23 +115,39 @@ BSTREE insert(BSTREE root, int number)
 BSTREE find(BSTREE root, int number)
 {
     //ADD YOUR CODE HERE. DON'T FORGET TO RETURN SOMETHING
-	BSTREE current = root;
+	BSTREE current = root; // pointer to keep track of the current node
 
-	while(current != NULL){
-		if (current->data != number){
-			if (current->data > number){
-				current = current->left;
+	while(current != NULL){ // make sure the current node is not null
+		if (current->data != number){ //if current node = number it returns current node
+			if (current->data > number){ // if not then check if number is bigger or smaller to move to next node
+				current = current->left; // moves to left node
 			}
 			else{
-				current = current->right;
+				current = current->right; // moves to right node
 			}
 		}
 		else{
-			return current;
+			return current; 
 		}
 	}
-	return NULL;
+	return NULL; // if current node is null weather that is the root or a null child we return null 
 }
+
+/* This is another version of the find function that uses recursion
+BSTREE currentRoot = root; //this variable symbolizes the the current node 
+    //ADD YOUR CODE HERE. DON'T FORGET TO RETURN SOMETHING
+    while(root != NULL){
+        if (currentRoot->data == number){
+            return currentRoot;
+        }
+        else if(number < currentRoot->data){
+            currentRoot->left = find(currentRoot->left, number);
+        }
+        else {
+            currentRoot->right = find(currentRoot->right, number);
+        }
+    }   
+*/ 
 
 
 //This function performs an inorder traversal of the binary
@@ -92,5 +158,6 @@ void inOrderTraversal(BSTREE root, FILE *fp)
 	//ADD YOUR CODE HERE
 
 }
+
 
 
