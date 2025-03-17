@@ -2,8 +2,8 @@
 * This program implements a binary search tree
 * 
 *
-* Modified by:
-* Date:
+* Modified by: Mahimaa Vardini BR, Faith Aikhionbare, Samarpita Sharma 
+* Date: Thursday, March 20th, 2025
 *************************************************************************************/
 
 #include<stdio.h>
