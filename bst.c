@@ -36,8 +36,14 @@ int main()
 	//Create a pointer call root, which points to the root of the tree;
 	//Initially, root points to NULL
 	BSTREE root = NULL;
+	
+	int choice;
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
+	printf("1. Input numbers to insert into tree ex: 1,2,3,4,7,9,5... \n");
+	printf("2. Insert first n number found in dataToBuildTree.txt file ");
+	printf("Choose an option: ");
+	fscan("%d", &choice);
 	
 
 }
@@ -169,6 +175,7 @@ void inOrderTraversal(BSTREE root, FILE *fp)
 	inOrderTraversal(current->right, fp); 
 	 
 }
+
 
 
 
