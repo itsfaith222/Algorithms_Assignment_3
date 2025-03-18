@@ -131,26 +131,6 @@ BSTREE insert(BSTREE root, int number)
 	
 }
 
-/* another version that uses recursion
-BSTREE currentRoot = root; //this variable symbolizes the the current node 
-    BSTREE Numparent = NULL; //this variable symbolizes th parent of the number being inserted 
-	
-	while(currentRoot != NULL){
-
-        Numparent = currentRoot;
-
-        if (number < currentRoot->data){
-            root->left = insert(root->left, number);
-        }
-        else if (number > currentRoot->data){
-            root->right = insert(root->right, number);
-        }
-    
-        return root;
-
-    }
-*/
-
 
 //This function returns a pointer to the node in the tree rooted at "root"
 //containing "number" or NULL if "number" is not found
@@ -173,22 +153,6 @@ BSTREE find(BSTREE root, int number)
 	}
 	return NULL; // if current node is null weather that is the root or a null child we return null 
 }
-
-/* This is another version of the find function that uses recursion
-BSTREE currentRoot = root; //this variable symbolizes the the current node 
-    //ADD YOUR CODE HERE. DON'T FORGET TO RETURN SOMETHING
-    while(root != NULL){
-        if (currentRoot->data == number){
-            return currentRoot;
-        }
-        else if(number < currentRoot->data){
-            currentRoot->left = find(currentRoot->left, number);
-        }
-        else {
-            currentRoot->right = find(currentRoot->right, number);
-        }
-    }   
-*/ 
 
 
 //This function performs an inorder traversal of the binary
