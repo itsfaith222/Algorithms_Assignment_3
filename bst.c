@@ -42,6 +42,7 @@ int main()
 	clock_t start;
     double executionTime;
     FILE *fp;
+	int n = {20000, 40000, 60000, 80000, 100000};
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
 	printf("1. Insert number 1 to n. \n");
@@ -49,13 +50,9 @@ int main()
 	printf("Choose an option: \n");
 	fscan("%d", &choice);
 
-	printf("Enter n: \n");
-	fscan("%d", &n);
-
-	start = clock(); // start the timer
-
-	if(choice == 1){
-		//insert to tree 1 to n
+	if(choice == 1){ //insert to tree 1 to n
+		
+		start = clock(); // start the timer
 
 		//insert rest of option one code here
 
@@ -63,8 +60,9 @@ int main()
 		executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
     	printf("Time taken to insert %d numbers: %.4f seconds\n", n, executionTime);
 
-	}elif(choice == 2){
-		//insert first n from file
+	}elif(choice == 2){ //insert first n from file
+		
+		start = clock(); // start the timer
 		fp = fopen("dataToBuildTree.txt", "w"); // open file 
 		
 		//insert rest of choice 2 code here
