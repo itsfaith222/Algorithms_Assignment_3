@@ -55,7 +55,7 @@ BSTREE insert(BSTREE root, int number)
 		root->data = number;
 		return root;
 	}
-	//ADD YOUR CODE HERE FOR THE REST OF THIS FUNCTION. DON'T FORGET TO RETURN SOMETHING
+	
 	BSTREE current = root; //to keep track of which node we are currently at 
 	BSTREE parent = NULL; // to keep track of the previos node for when we find an empty child
 
@@ -114,7 +114,6 @@ BSTREE currentRoot = root; //this variable symbolizes the the current node
 //containing "number" or NULL if "number" is not found
 BSTREE find(BSTREE root, int number)
 {
-    //ADD YOUR CODE HERE. DON'T FORGET TO RETURN SOMETHING
 	BSTREE current = root; // pointer to keep track of the current node
 
 	while(current != NULL){ // make sure the current node is not null
@@ -155,8 +154,20 @@ BSTREE currentRoot = root; //this variable symbolizes the the current node
 //values of the nodes as they are visited.
 void inOrderTraversal(BSTREE root, FILE *fp)
 {
-	//ADD YOUR CODE HERE
+	//if root is null return to pevious call else continue
+	if(root == NULL){
+		return;
+	}
 
+	BSTREE current = root; // the parent node is current
+
+	//find smalles number/most left node using recursion
+	inOrderTraversal(current->left, fp);
+	//prints data of parent node when execution returns to the recusive function. 
+	fprint(fp, "%d", current->data);
+	//now go through the right side of the parent node repeating this function finding the most left node
+	inOrderTraversal(current->right, fp); 
+	 
 }
 
 
