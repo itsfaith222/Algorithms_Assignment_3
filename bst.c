@@ -37,14 +37,50 @@ int main()
 	//Initially, root points to NULL
 	BSTREE root = NULL;
 	
-	int choice;
+	int choice, n;
+	int count = 0;
+	clock_t start;
+    double executionTime;
+    FILE *fp;
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
-	printf("1. Input numbers to insert into tree ex: 1,2,3,4,7,9,5... \n");
-	printf("2. Insert first n number found in dataToBuildTree.txt file ");
-	printf("Choose an option: ");
+	printf("1. Insert number 1 to n. \n");
+	printf("2. Insert first n number found in dataToBuildTree.txt file. ");
+	printf("Choose an option: \n");
 	fscan("%d", &choice);
-	
+
+	printf("Enter n: \n");
+	fscan("%d", &n);
+
+	start = clock(); // start the timer
+
+	if(choice == 1){
+		//insert to tree 1 to n
+
+		//insert rest of option one code here
+
+		//calculate and display execution time
+		executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
+    	printf("Time taken to insert %d numbers: %.4f seconds\n", n, executionTime);
+
+	}elif(choice == 2){
+		//insert first n from file
+		fp = fopen("dataToBuildTree.txt", "w"); // open file 
+		
+		//insert rest of choice 2 code here
+
+		//calculate and display execution time
+		executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
+    	printf("Time taken to insert %d numbers: %.4f seconds\n", n, executionTime);
+		fclose(fp);
+
+	}else{
+		//neither choice 
+		printf("Invalid choice!")
+		return;
+	}
+
+    return 0;  
 
 }
 
