@@ -138,10 +138,10 @@ BSTREE insert(BSTREE root, int number)
 		if (current->data > number){  // check if number is smaller than current node
 			//move to the left child 
 			current = current->left;
-		}elif (current->data < number){ // check if number is bigger than current node
+		}else if (current->data < number){ // check if number is bigger than current node
 			//move to the right child
 			current = current->right;
-		}elif (current->data == number){ // check is number is the same as the current node
+		}else if (current->data == number){ // check is number is the same as the current node
 			return root; // if same return root so we done insert duplicates. 
 		}
 	}
