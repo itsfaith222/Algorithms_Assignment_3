@@ -49,7 +49,6 @@ int main()
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
 	printf("1. Insert number 1 to n. \n");
 	printf("2. Insert first n number found in dataToBuildTree.txt file. \n");
-	printf("3. Question 3 search 1000 numbers and print number of found values. \n");
 	printf("Choose an option: ");
 	scanf("%d", &choice);
 
