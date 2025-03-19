@@ -53,19 +53,29 @@ int main()
 	fscan("%d", &choice);
 
 	if(choice == 1){ //insert to tree 1 to n
+		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
+			for(int k = 0; k < 5; k++){
+				start = clock(); // start the timer
+
+				//each run rest BST root to be empty 
+				root = NULL;
+
+				//insert rest of option one code here
+				for(int num = 1; num <= inputs[i]; num++){
+					root = insert(root, num);
+				}
 		
-		start = clock(); // start the timer
-
-		//insert rest of option one code here
-
-		//calculate and display execution time
-		executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-    	printf("Time taken to insert %d numbers: %.4f seconds\n", n, executionTime);
+				//calculate and display execution time
+				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
+				printf("Run %d \n", k+1);
+				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+			}
+		}
 
 	}else if(choice == 2){ //insert first n from file
 
 		//insert rest of choice 2 code here - iterate through n then make inner loop 5 
-		for(int i = 0; i < sizeof(inputs), i++){
+		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
 			
 			for(int j = 0; j < 5; j ++){
 				start = clock(); // start timer
@@ -88,7 +98,7 @@ int main()
 				
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Run #%d: \n", j);
+				printf("Run #%d: \n", j+1);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 				fclose(fp);
 			}
