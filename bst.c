@@ -50,7 +50,7 @@ int main()
 	printf("1. Insert number 1 to n. \n");
 	printf("2. Insert first n number found in dataToBuildTree.txt file. ");
 	printf("Choose an option: \n");
-	fscan("%d", &choice);
+	scanf("%d", &choice);
 
 	if(choice == 1){ //insert to tree 1 to n
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
@@ -90,8 +90,11 @@ int main()
 					exit(1);
 				}
 
+				// reset count to keep tract of the numbers being inserted from file
+				count = 0;
+
 				//insert each number into binary search tree
-				while(count < inputs[i] && scanf(fp, "%d", &num) == 1){
+				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					root = insert(root, num);
 					count ++;
 				}
@@ -108,8 +111,9 @@ int main()
 	}else{
 		//neither choice 
 		printf("Invalid choice!");
-		return;
+		return 1;
 	}
+	return 0;
 
 }
 
@@ -198,7 +202,7 @@ void inOrderTraversal(BSTREE root, FILE *fp)
 	//find smalles number/most left node using recursion
 	inOrderTraversal(current->left, fp);
 	//prints data of parent node when execution returns to the recusive function. 
-	printf(fp, "%d", current->data);
+	fprintf(fp, "%d ", current->data);
 	//now go through the right side of the parent node repeating this function finding the most left node
 	inOrderTraversal(current->right, fp); 
 	 
