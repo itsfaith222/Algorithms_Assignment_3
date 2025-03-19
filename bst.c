@@ -109,9 +109,7 @@ int main()
 		//neither choice 
 		printf("Invalid choice!");
 		return;
-	}
-
-    return 1;  
+	
 
 }
 
