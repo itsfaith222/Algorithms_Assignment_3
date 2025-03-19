@@ -44,7 +44,7 @@ int main()
     FILE *fp;
 
 	//for each choice make a loop that iterates between these numbers for n
-	int inputs[] = {2, 4, 16, 8, 10};
+	int inputs[] = {2000, 4000, 6000, 8000, 1000};
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
 	printf("1. Insert number 1 to n. \n");
@@ -134,12 +134,12 @@ int main()
 			}
 
 			count = 0; // reset count to keep tract of the numbers being inserted from file
-			int match;
+			BSTREE match;
 			int values = 0;
 
 			//insert each number into binary search tree
 			while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
-				match = find(num);
+				match = find(root, num);
 				if (match != NULL){
 					values += 1;
 				}
@@ -147,7 +147,7 @@ int main()
 			}
 
 			//print the amout of matches found
-			printf("Input size: %d \nNumber of values found: %d \n", inputs[i], values);
+			printf("Input size: %d \nNumber of values found: %d \n\n", inputs[i], values);
 			fclose(fp);
 		}
 	
