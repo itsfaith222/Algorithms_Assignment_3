@@ -44,12 +44,12 @@ int main()
     FILE *fp;
 
 	//for each choice make a loop that iterates between these numbers for n
-	int inputs[] = {20000, 40000, 60000, 80000, 100000};
+	int inputs[] = {2, 4, 6, 8, 10};
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
 	printf("1. Insert number 1 to n. \n");
-	printf("2. Insert first n number found in dataToBuildTree.txt file. ");
-	printf("Choose an option: \n");
+	printf("2. Insert first n number found in dataToBuildTree.txt file. \n");
+	printf("Choose an option: ");
 	scanf("%d", &choice);
 
 	if(choice == 1){ //insert to tree 1 to n
@@ -70,6 +70,7 @@ int main()
 				printf("Run %d \n", k+1);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 			}
+			printf("\n"); // empty line to separate each input being ran
 		}
 
 	}else if(choice == 2){ //insert first n from file
@@ -105,7 +106,7 @@ int main()
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 				fclose(fp);
 			}
-
+			printf("\n"); // empty line to separate each input being ran
 		}
 
 	}else{
