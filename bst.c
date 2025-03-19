@@ -37,7 +37,7 @@ int main()
 	//Initially, root points to NULL
 	BSTREE root = NULL;
 	
-	int choice, n;
+	int choice, num;
 	int count = 0;
 	clock_t start;
     double executionTime;
@@ -62,36 +62,46 @@ int main()
 		executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
     	printf("Time taken to insert %d numbers: %.4f seconds\n", n, executionTime);
 
-	}elif(choice == 2){ //insert first n from file
-		
-		fp = fopen("dataToBuildTree.txt", "w"); // open file 
-		
+	}else if(choice == 2){ //insert first n from file
+
 		//insert rest of choice 2 code here - iterate through n then make inner loop 5 
-		for(int i = 0; i < inputs.length(), i++){
+		for(int i = 0; i < sizeof(inputs), i++){
 			
 			for(int j = 0; j < 5; j ++){
 				start = clock(); // start timer
-				
-				
+				fp = fopen("dataToBuildTree.txt", "r"); // open file 
 
+				// for each run the tree needs to be empyt so this resets the tree to empty
+				root = NULL;
+				
+				//make sure file is not empyt 
+				if(fp == NULL){
+					printf("Error opening file\n");
+					exit(1);
+				}
+
+				//insert each number into binary search tree
+				while(count < inputs[i] && scanf(fp, "%d", &num) == 1){
+					root = insert(root, num);
+					count ++;
+				}
+				
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
 				printf("Run #%d: \n", j);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
-
+				fclose(fp);
 			}
 
-		} 
-
-		fclose(fp);
+		}
 
 	}else{
 		//neither choice 
-		printf("Invalid choice!")
+		printf("Invalid choice!");
 		return;
 	}
 
-    return 0;  
+    return 1;  
 
 }
 
@@ -138,8 +148,7 @@ BSTREE insert(BSTREE root, int number)
 	}else {
 		parent->right = newNode; // insert new node as right child of parent if number is bigger
 	}
-
-	
+	return root;
 }
 
 
