@@ -67,7 +67,7 @@ int main()
 		
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Run %d \n", k+1);
+				printf("Run %d: | ", k+1);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 			}
 			printf("\n"); // empty line to separate each input being ran
@@ -102,7 +102,7 @@ int main()
 				
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Run #%d: \n", j+1);
+				printf("Run #%d: | ", j+1);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 				fclose(fp);
 			}
