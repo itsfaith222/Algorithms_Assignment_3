@@ -56,8 +56,6 @@ int main()
 	if(choice == 1){ //insert to tree 1 to n
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
 			for(int k = 0; k < 5; k++){
-				start = clock(); // start the timer
-
 				//each run rest BST root to be empty 
 				root = NULL;
 
@@ -65,11 +63,27 @@ int main()
 				for(int num = 1; num <= inputs[i]; num++){
 					root = insert(root, num);
 				}
-		
-				//calculate and display execution time
+
+				//Question 3 of assignment
+				start = clock(); // start the timer
+				count = 0; // reset count to keep tract of the numbers being inserted from file
+				BSTREE match;
+				int values = 0;
+	
+				//search for the number from the file 
+				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
+					match = find(root, num);
+					if (match != NULL){
+						values += 1;
+					}
+					count ++;
+				}
+	
+				//print the amount of matches found
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Run %d: | ", k+1);
-				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n\n", k+1, inputs[i], values, executionTime);
+				fclose(fp);
+		
 			}
 			printf("\n"); // empty line to separate each input being ran
 		}
@@ -110,47 +124,6 @@ int main()
 			printf("\n"); // empty line to separate each input being ran
 		}
 
-	}else if (choice == 3){
-		// question 3 in assignment 3 search for 1000 numbers and print how mnay found 
-
-		//first build the tree for each input
-		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
-			// reset count to keep tract of the numbers being inserted from file
-			
-			//each run reset BST root to be empty 
-			root = NULL;
-
-			//insert rest of option one code here
-			for(int num = 1; num <= inputs[i]; num++){
-				root = insert(root, num);
-			}
-
-			fp = fopen("searchList.txt", "r"); // open file 
-				
-			//make sure file is not empyt 
-			if(fp == NULL){
-				printf("Error opening file\n");
-				exit(1);
-			}
-
-			count = 0; // reset count to keep tract of the numbers being inserted from file
-			BSTREE match;
-			int values = 0;
-
-			//insert each number into binary search tree
-			while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
-				match = find(root, num);
-				if (match != NULL){
-					values += 1;
-				}
-				count ++;
-			}
-
-			//print the amout of matches found
-			printf("Input size: %d \nNumber of values found: %d \n\n", inputs[i], values);
-			fclose(fp);
-		}
-	
 	}else{
 		//neither choice 
 		printf("Invalid choice!");
