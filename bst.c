@@ -115,7 +115,6 @@ int main()
 		return 1;
 	}
 	return 0;
-
 }
 
 //This function creates a new node whose "data" is number and adds this
