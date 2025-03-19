@@ -200,7 +200,7 @@ void inOrderTraversal(BSTREE root, FILE *fp)
 	//find smalles number/most left node using recursion
 	inOrderTraversal(current->left, fp);
 	//prints data of parent node when execution returns to the recusive function. 
-	fprint(fp, "%d", current->data);
+	printf(fp, "%d", current->data);
 	//now go through the right side of the parent node repeating this function finding the most left node
 	inOrderTraversal(current->right, fp); 
 	 
