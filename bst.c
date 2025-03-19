@@ -44,7 +44,7 @@ int main()
     FILE *fp;
 
 	//for each choice make a loop that iterates between these numbers for n
-	int inputs[] = {2000, 4000, 6000, 8000, 1000};
+	int inputs[] = {20, 40, 60, 80, 100};
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
 	printf("1. Insert number 1 to n. \n");
@@ -101,33 +101,56 @@ int main()
 
 		//insert rest of choice 2 code here - iterate through n then make inner loop 5 
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
+			fp = fopen("dataToBuildTree.txt", "r"); // open file 
+
+			// for each run the tree needs to be empyt so this resets the tree to empty
+			root = NULL;
 			
+			//make sure file is not empyt 
+			if(fp == NULL){
+				printf("Error opening file\n");
+				exit(1);
+			}
+
+			// reset count to keep tract of the numbers being inserted from file
+			count = 0;
+
+			//insert each number into binary search tree
+			while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
+				root = insert(root, num);
+				count ++;
+			}
+
+			fclose(fp); //close file
+
 			for(int j = 0; j < 5; j ++){
-				start = clock(); // start timer
-				fp = fopen("dataToBuildTree.txt", "r"); // open file 
+				//Question 3 of assignment
+				start = clock(); // start the timer
+				count = 0; // reset count to keep tract of the numbers being inserted from file
+				BSTREE match;
+				int values = 0;
 
-				// for each run the tree needs to be empyt so this resets the tree to empty
-				root = NULL;
-				
-				//make sure file is not empyt 
-				if(fp == NULL){
+				//open file to search from 
+				fp = fopen("searchList.txt", "r");
+
+				//if file is null
+				if (fp == NULL) {
 					printf("Error opening file\n");
-					exit(1);
+					return 1;
 				}
-
-				// reset count to keep tract of the numbers being inserted from file
-				count = 0;
-
-				//insert each number into binary search tree
+	
+				//search for the number from the file 
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
-					root = insert(root, num);
+					match = find(root, num);
+					if (match != NULL){
+						values += 1;
+					}
 					count ++;
 				}
-				
-				//calculate and display execution time
+	
+				//print the amount of matches found
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Run #%d: | ", j+1);
-				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n", j+1, inputs[i], values, executionTime);
 				fclose(fp);
 			}
 			printf("\n"); // empty line to separate each input being ran
