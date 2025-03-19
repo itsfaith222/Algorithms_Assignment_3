@@ -44,11 +44,12 @@ int main()
     FILE *fp;
 
 	//for each choice make a loop that iterates between these numbers for n
-	int inputs[] = {2, 4, 6, 8, 10};
+	int inputs[] = {2, 4, 16, 8, 10};
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
 	printf("1. Insert number 1 to n. \n");
 	printf("2. Insert first n number found in dataToBuildTree.txt file. \n");
+	printf("3. Question 3 search 1000 numbers and print number of found values. \n");
 	printf("Choose an option: ");
 	scanf("%d", &choice);
 
@@ -60,7 +61,7 @@ int main()
 				//each run rest BST root to be empty 
 				root = NULL;
 
-				//insert rest of option one code here
+				//insert reset of option one code here
 				for(int num = 1; num <= inputs[i]; num++){
 					root = insert(root, num);
 				}
@@ -109,11 +110,53 @@ int main()
 			printf("\n"); // empty line to separate each input being ran
 		}
 
+	}else if (choice == 3){
+		// question 3 in assignment 3 search for 1000 numbers and print how mnay found 
+
+		//first build the tree for each input
+		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
+			// reset count to keep tract of the numbers being inserted from file
+			
+			//each run reset BST root to be empty 
+			root = NULL;
+
+			//insert rest of option one code here
+			for(int num = 1; num <= inputs[i]; num++){
+				root = insert(root, num);
+			}
+
+			fp = fopen("searchList.txt", "r"); // open file 
+				
+			//make sure file is not empyt 
+			if(fp == NULL){
+				printf("Error opening file\n");
+				exit(1);
+			}
+
+			count = 0; // reset count to keep tract of the numbers being inserted from file
+			int match;
+			int values = 0;
+
+			//insert each number into binary search tree
+			while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
+				match = find(num);
+				if (match != NULL){
+					values += 1;
+				}
+				count ++;
+			}
+
+			//print the amout of matches found
+			printf("Input size: %d \nNumber of values found: %d \n", inputs[i], values);
+			fclose(fp);
+		}
+	
 	}else{
 		//neither choice 
 		printf("Invalid choice!");
 		return 1;
 	}
+
 	return 0;
 }
 
