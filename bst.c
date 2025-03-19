@@ -54,20 +54,30 @@ int main()
 
 	if(choice == 1){ //insert to tree 1 to n
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
+			//each run reset BST root to be empty 
+			root = NULL;
+
+			//build tree for each input size once! then search 5 times
+			printf("Creating tree for input #%d! \n", inputs[i]);
+			for(int num = 1; num <= inputs[i]; num++){
+				root = insert(root, num);
+			}
+
 			for(int k = 0; k < 5; k++){
-				//each run rest BST root to be empty 
-				root = NULL;
-
-				//insert reset of option one code here
-				for(int num = 1; num <= inputs[i]; num++){
-					root = insert(root, num);
-				}
-
 				//Question 3 of assignment
 				start = clock(); // start the timer
 				count = 0; // reset count to keep tract of the numbers being inserted from file
 				BSTREE match;
 				int values = 0;
+
+				//open file to search from 
+				fp = fopen("searchList.txt", "r");
+
+				//if file is null
+				if (fp == NULL) {
+					printf("Error opening file\n");
+					return 1;
+				}
 	
 				//search for the number from the file 
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
