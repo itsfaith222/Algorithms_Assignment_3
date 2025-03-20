@@ -90,7 +90,7 @@ int main()
 	
 				//print the amount of matches found
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n", inputs[i], k + 1, values, executionTime);
+				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n", k+1, inputs[i], values, executionTime);
 				fclose(fp);
 		
 			}
@@ -166,7 +166,7 @@ int main()
 			fprintf(fp, "In order traversal of tree with %d inputs: \n", inputs[i]);
 			inOrderTraversal(root, fp);
 			fclose(fp);
-
+			
 			printf("\n"); // empty line to separate each input being ran
 		}
 
