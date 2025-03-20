@@ -44,7 +44,7 @@ int main()
     FILE *fp;
 
 	//for each choice make a loop that iterates between these numbers for n
-	int inputs[] = {6, 10, 24, 30, 45};
+	int inputs[] = {20000, 40000, 60000, 80000, 100000};
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
 	printf("1. Insert number 1 to n. \n");
