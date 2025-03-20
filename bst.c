@@ -44,7 +44,7 @@ int main()
     FILE *fp;
 
 	//for each choice make a loop that iterates between these numbers for n
-	int inputs[] = {20, 40, 60, 80, 100};
+	int inputs[] = {6, 10, 24, 30, 45};
 
 	//ADD YOUR CODE HERE for #2 and #3: automate as much as possible (e.g. don't hard-code n)
 	printf("1. Insert number 1 to n. \n");
@@ -94,6 +94,13 @@ int main()
 				fclose(fp);
 		
 			}
+			
+			//checking if the trees are made right
+			fp = fopen("treeOutput.txt", "w");
+			fprintf(fp, "In order traversal of tree with %d inputs: \n", inputs[i]);
+			inOrderTraversal(root, fp);
+			fclose(fp);
+
 			printf("\n"); // empty line to separate each input being ran
 		}
 
@@ -153,6 +160,13 @@ int main()
 				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n", j+1, inputs[i], values, executionTime);
 				fclose(fp);
 			}
+
+			//checking if the trees are made right
+			fp = fopen("treeOutput.txt", "w");
+			fprintf(fp, "In order traversal of tree with %d inputs: \n", inputs[i]);
+			inOrderTraversal(root, fp);
+			fclose(fp);
+			
 			printf("\n"); // empty line to separate each input being ran
 		}
 
