@@ -94,12 +94,6 @@ int main()
 				fclose(fp);
 		
 			}
-			
-			//checking if the trees are made right
-			fp = fopen("treeOutput.txt", "w");
-			fprintf(fp, "In order traversal of tree with %d inputs: \n", inputs[i]);
-			inOrderTraversal(root, fp);
-			fclose(fp);
 
 			printf("\n"); // empty line to separate each input being ran
 		}
@@ -160,12 +154,6 @@ int main()
 				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n", j+1, inputs[i], values, executionTime);
 				fclose(fp);
 			}
-
-			//checking if the trees are made right
-			fp = fopen("treeOutput.txt", "w");
-			fprintf(fp, "In order traversal of tree with %d inputs: \n", inputs[i]);
-			inOrderTraversal(root, fp);
-			fclose(fp);
 			
 			printf("\n"); // empty line to separate each input being ran
 		}
