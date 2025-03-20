@@ -54,16 +54,24 @@ int main()
 
 	if(choice == 1){ //insert to tree 1 to n
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
-			//each run reset BST root to be empty 
-			root = NULL;
-
-			//build tree for each input size once! then search 5 times
-			printf("Creating tree for input #%d! \n", inputs[i]);
-			for(int num = 1; num <= inputs[i]; num++){
-				root = insert(root, num);
-			}
-
 			for(int k = 0; k < 5; k++){
+				start = clock(); // start the timer for 
+
+				//each run rest BST root to be empty 
+				root = NULL;
+
+				printf("Creating tree for input %d: \n", inputs[i]);
+				//insert rest of option one code here
+				for(int num = 1; num <= inputs[i]; num++){
+					root = insert(root, num);
+				}
+		
+				//calculate and display execution time
+				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
+				printf("Run %d: | ", k+1);
+				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+
+
 				//Question 3 of assignment
 				start = clock(); // start the timer
 				count = 0; // reset count to keep tract of the numbers being inserted from file
@@ -79,6 +87,7 @@ int main()
 					return 1;
 				}
 	
+				printf("Searching tree: \n");
 				//search for the number from the file 
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					match = find(root, num);
@@ -102,29 +111,35 @@ int main()
 
 		//insert rest of choice 2 code here - iterate through n then make inner loop 5 
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
-			fp = fopen("dataToBuildTree.txt", "r"); // open file 
-
-			// for each run the tree needs to be empyt so this resets the tree to empty
-			root = NULL;
-			
-			//make sure file is not empyt 
-			if(fp == NULL){
-				printf("Error opening file\n");
-				exit(1);
-			}
-
-			// reset count to keep tract of the numbers being inserted from file
-			count = 0;
-
-			//insert each number into binary search tree
-			while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
-				root = insert(root, num);
-				count ++;
-			}
-
-			fclose(fp); //close file
-
 			for(int j = 0; j < 5; j ++){
+				start = clock(); // start timer
+				fp = fopen("dataToBuildTree.txt", "r"); // open file 
+
+				// for each run the tree needs to be empyt so this resets the tree to empty
+				root = NULL;
+				
+				//make sure file is not empyt 
+				if(fp == NULL){
+					printf("Error opening file\n");
+					exit(1);
+				}
+
+				// reset count to keep tract of the numbers being inserted from file
+				count = 0;
+
+				printf("Creating tree for input %d: \n", inputs[i]);
+				//insert each number into binary search tree
+				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
+					root = insert(root, num);
+					count ++;
+				}
+				
+				//calculate and display execution time
+				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
+				printf("Run #%d: | ", j+1);
+				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+				fclose(fp);
+
 				//Question 3 of assignment
 				start = clock(); // start the timer
 				count = 0; // reset count to keep tract of the numbers being inserted from file
@@ -140,6 +155,7 @@ int main()
 					return 1;
 				}
 	
+				printf("Searching tree: \n");
 				//search for the number from the file 
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					match = find(root, num);
