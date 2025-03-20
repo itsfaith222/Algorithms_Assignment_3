@@ -69,7 +69,7 @@ int main()
 		
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("--Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+				printf("---Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 
 
 				//Question 3 of assignment
@@ -99,7 +99,7 @@ int main()
 	
 				//print the amount of matches found
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("-- Number of values found: %d | Execution time: %.4f seconds. \n", values, executionTime);
+				printf("---Number of values found: %d | Execution time: %.4f seconds. \n", values, executionTime);
 				fclose(fp);
 		
 			}
@@ -128,6 +128,7 @@ int main()
 				count = 0;
 
 				printf("Creating tree for input %d: \n", inputs[i]);
+				printf("Run #%d: ", j+1);
 				//insert each number into binary search tree
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					root = insert(root, num);
@@ -136,8 +137,7 @@ int main()
 				
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Run #%d: | ", j+1);
-				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+				printf("---Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 				fclose(fp);
 
 				//Question 3 of assignment
@@ -167,7 +167,7 @@ int main()
 	
 				//print the amount of matches found
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n", inputs[i], j+1, values, executionTime);
+				printf("---Number of values found: %d | Execution time: %.4f seconds. \n", values, executionTime);
 				fclose(fp);
 			}
 			
