@@ -55,11 +55,12 @@ int main()
 	if(choice == 1){ //insert to tree 1 to n
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
 			for(int k = 0; k < 5; k++){
-				start = clock(); // start the timer
+				start = clock(); // start the timer for 
 
 				//each run rest BST root to be empty 
 				root = NULL;
 
+				printf("Creating tree for input %d: \n", inputs[i]);
 				//insert rest of option one code here
 				for(int num = 1; num <= inputs[i]; num++){
 					root = insert(root, num);
@@ -69,7 +70,40 @@ int main()
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
 				printf("Run %d: | ", k+1);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+
+
+				//Question 3 of assignment
+				start = clock(); // start the timer
+				count = 0; // reset count to keep tract of the numbers being inserted from file
+				BSTREE match;
+				int values = 0;
+
+				//open file to search from 
+				fp = fopen("searchList.txt", "r");
+
+				//if file is null
+				if (fp == NULL) {
+					printf("Error opening file\n");
+					return 1;
+				}
+	
+				printf("Searching tree: \n");
+				//search for the number from the file 
+				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
+					match = find(root, num);
+					if (match != NULL){
+						values += 1;
+					}
+					count ++;
+				}
+	
+				//print the amount of matches found
+				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
+				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n", inputs[i], k+1, values, executionTime);
+				fclose(fp);
+		
 			}
+
 			printf("\n"); // empty line to separate each input being ran
 		}
 
@@ -77,7 +111,6 @@ int main()
 
 		//insert rest of choice 2 code here - iterate through n then make inner loop 5 
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
-			
 			for(int j = 0; j < 5; j ++){
 				start = clock(); // start timer
 				fp = fopen("dataToBuildTree.txt", "r"); // open file 
@@ -94,6 +127,7 @@ int main()
 				// reset count to keep tract of the numbers being inserted from file
 				count = 0;
 
+				printf("Creating tree for input %d: \n", inputs[i]);
 				//insert each number into binary search tree
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					root = insert(root, num);
@@ -105,7 +139,38 @@ int main()
 				printf("Run #%d: | ", j+1);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 				fclose(fp);
+
+				//Question 3 of assignment
+				start = clock(); // start the timer
+				count = 0; // reset count to keep tract of the numbers being inserted from file
+				BSTREE match;
+				int values = 0;
+
+				//open file to search from 
+				fp = fopen("searchList.txt", "r");
+
+				//if file is null
+				if (fp == NULL) {
+					printf("Error opening file\n");
+					return 1;
+				}
+	
+				printf("Searching tree: \n");
+				//search for the number from the file 
+				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
+					match = find(root, num);
+					if (match != NULL){
+						values += 1;
+					}
+					count ++;
+				}
+	
+				//print the amount of matches found
+				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
+				printf("Input size: %d \nRun %d | Number of values found: %d | Execution time: %.4f seconds. \n", inputs[i], j+1, values, executionTime);
+				fclose(fp);
 			}
+			
 			printf("\n"); // empty line to separate each input being ran
 		}
 
@@ -114,6 +179,7 @@ int main()
 		printf("Invalid choice!");
 		return 1;
 	}
+
 	return 0;
 }
 
