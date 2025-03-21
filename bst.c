@@ -101,6 +101,28 @@ int main()
 				printf("Number of values found: %d | Searching time: %.4f seconds. \n", values, searchTime);
 				fclose(fp);
 
+				
+				//This code is to print the in order traversal of each tree into an output file
+
+				fp = fopen("treeOutput.txt", "a+"); // file is opened in apend mose just incase file is not found it will be created
+
+				if (fp == NULL) {
+					printf("Error opening file or creating file\n");
+					return 1;
+				}
+
+				fprintf(fp, "\n\nIn order traversal of tree with %d inputs: \n", inputs[i]);
+				
+				//make sure root is not null 
+				if (root != NULL){
+					inOrderTraversal(root, fp);
+				}else{
+					printf("tree is empty\n");
+				}
+				printf("printed in order traversal in output file\n");
+
+				fclose(fp); 
+				
 
 			}
 			printf("\n"); // empty line to separate each input being ran
@@ -167,6 +189,29 @@ int main()
 				searchTime = (double)(clock() - begin) / CLOCKS_PER_SEC * 1000;
 				printf("Number of values found: %d | Searching time: %.4f seconds. \n", values, searchTime);
 				fclose(fp);
+
+				/*
+				//This code is to print the in order traversal of each tree into an output file
+
+				fp = fopen("treeOutput.txt", "a+"); // file is opened in apend mose just incase file is not found it will be created
+
+				if (fp == NULL) {
+					printf("Error opening file or creating file\n");
+					return 1;
+				}
+
+				fprintf(fp, "\n\nIn order traversal of tree with %d inputs: \n", inputs[i]);
+				
+				//make sure root is not null 
+				if (root != NULL){
+					inOrderTraversal(root, fp);
+				}else{
+					printf("tree is empty\n");
+				}
+				printf("printed in order traversal in output file\n");
+
+				fclose(fp); 
+				*/
 			}
 			
 			printf("\n"); // empty line to separate each input being ran
