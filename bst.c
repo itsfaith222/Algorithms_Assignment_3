@@ -139,6 +139,35 @@ int main()
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 				fclose(fp);
+
+				//Question 3 of assignment
+				begin = clock(); // start the timer
+				count = 0; // reset count to keep tract of the numbers being inserted from file
+				int values = 0;
+
+				//open file to search from 
+				fp = fopen("searchList.txt", "r");
+
+				//if file is null
+				if (fp == NULL) {
+					printf("Error opening file\n");
+					return 1;
+				}
+	
+				printf("Searching tree: ");
+				//search for the number from the file 
+				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
+					match = find(root, num);
+					if (match != NULL){
+						values += 1;
+					}
+					count ++;
+				}
+	
+				//print the amount of matches found
+				searchTime = (double)(clock() - begin) / CLOCKS_PER_SEC * 1000;
+				printf("Number of values found: %d | Execution time: %.4f seconds. \n", values, searchTime);
+				fclose(fp);
 			}
 			printf("\n"); // empty line to separate each input being ran
 		}
