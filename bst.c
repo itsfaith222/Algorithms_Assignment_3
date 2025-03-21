@@ -101,7 +101,7 @@ int main()
 				printf("Number of values found: %d | Searching time: %.4f seconds. \n", values, searchTime);
 				fclose(fp);
 
-				
+				/*
 				//This code is to print the in order traversal of each tree into an output file
 
 				fp = fopen("treeOutput.txt", "a+"); // file is opened in apend mose just incase file is not found it will be created
@@ -122,6 +122,7 @@ int main()
 				printf("printed in order traversal in output file\n");
 
 				fclose(fp); 
+				*/
 				
 
 			}
