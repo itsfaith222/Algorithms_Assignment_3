@@ -55,11 +55,13 @@ int main()
 	if(choice == 1){ //insert to tree 1 to n
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
 			for(int k = 0; k < 5; k++){
+				printf("Run #%d: \n", k+1);
 				start = clock(); // start the timer
 
 				//each run rest BST root to be empty 
 				root = NULL;
 
+				printf("Creating tree: ");
 				//insert rest of option one code here
 				for(int num = 1; num <= inputs[i]; num++){
 					root = insert(root, num);
@@ -67,8 +69,9 @@ int main()
 		
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Run %d: | ", k+1);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+
+
 			}
 			printf("\n"); // empty line to separate each input being ran
 		}
@@ -79,6 +82,7 @@ int main()
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
 			
 			for(int j = 0; j < 5; j ++){
+				printf("Run #%d: \n", j+1);
 				start = clock(); // start timer
 				fp = fopen("dataToBuildTree.txt", "r"); // open file 
 
@@ -94,6 +98,7 @@ int main()
 				// reset count to keep tract of the numbers being inserted from file
 				count = 0;
 
+				printf("Creating tree: ");
 				//insert each number into binary search tree
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					root = insert(root, num);
@@ -102,7 +107,6 @@ int main()
 				
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("Run #%d: | ", j+1);
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 				fclose(fp);
 			}
