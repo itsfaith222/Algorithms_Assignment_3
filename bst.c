@@ -39,9 +39,10 @@ int main()
 	
 	int choice, num;
 	int count = 0;
-	clock_t start;
-    double executionTime;
+	clock_t start, begin;
+    double executionTime, searchTime;
     FILE *fp;
+	BSTREE match; //pointer for when I am searching trees for numbers
 
 	//for each choice make a loop that iterates between these numbers for n
 	int inputs[] = {20000, 40000, 60000, 80000, 100000};
@@ -55,13 +56,13 @@ int main()
 	if(choice == 1){ //insert to tree 1 to n
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
 			for(int k = 0; k < 5; k++){
-				start = clock(); // start the timer for 
+				printf("Run #%d: \n", k+1);
+				start = clock(); // start the timer
 
 				//each run rest BST root to be empty 
 				root = NULL;
 
-				printf("Creating tree for input %d: \n", inputs[i]);
-				printf("Run #%d: \n", k+1);
+				printf("Creating tree: ");
 				//insert rest of option one code here
 				for(int num = 1; num <= inputs[i]; num++){
 					root = insert(root, num);
@@ -69,13 +70,11 @@ int main()
 		
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("---Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
-
+				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 
 				//Question 3 of assignment
-				start = clock(); // start the timer
+				begin = clock(); // start the timer
 				count = 0; // reset count to keep tract of the numbers being inserted from file
-				BSTREE match;
 				int values = 0;
 
 				//open file to search from 
@@ -87,7 +86,7 @@ int main()
 					return 1;
 				}
 	
-				printf("Search tree: ");
+				printf("Searching tree: ");
 				//search for the number from the file 
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					match = find(root, num);
@@ -98,12 +97,12 @@ int main()
 				}
 	
 				//print the amount of matches found
-				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("---Number of values found: %d | Execution time: %.4f seconds. \n", values, executionTime);
+				searchTime = (double)(clock() - begin) / CLOCKS_PER_SEC * 1000;
+				printf("Number of values found: %d | Searching time: %.4f seconds. \n", values, searchTime);
 				fclose(fp);
-		
-			}
 
+
+			}
 			printf("\n"); // empty line to separate each input being ran
 		}
 
@@ -112,6 +111,7 @@ int main()
 		//insert rest of choice 2 code here - iterate through n then make inner loop 5 
 		for(int i = 0; i < sizeof(inputs) / sizeof(inputs[0]); i++){
 			for(int j = 0; j < 5; j ++){
+				printf("Run #%d: \n", j+1);
 				start = clock(); // start timer
 				fp = fopen("dataToBuildTree.txt", "r"); // open file 
 
@@ -127,8 +127,7 @@ int main()
 				// reset count to keep tract of the numbers being inserted from file
 				count = 0;
 
-				printf("Creating tree for input %d: \n", inputs[i]);
-				printf("Run #%d: ", j+1);
+				printf("Creating tree: ");
 				//insert each number into binary search tree
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					root = insert(root, num);
@@ -137,13 +136,12 @@ int main()
 				
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("---Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
 				fclose(fp);
 
 				//Question 3 of assignment
-				start = clock(); // start the timer
+				begin = clock(); // start the timer
 				count = 0; // reset count to keep tract of the numbers being inserted from file
-				BSTREE match;
 				int values = 0;
 
 				//open file to search from 
@@ -155,7 +153,7 @@ int main()
 					return 1;
 				}
 	
-				printf("Searching tree: \n");
+				printf("Searching tree: ");
 				//search for the number from the file 
 				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
 					match = find(root, num);
@@ -166,8 +164,8 @@ int main()
 				}
 	
 				//print the amount of matches found
-				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
-				printf("---Number of values found: %d | Execution time: %.4f seconds. \n", values, executionTime);
+				searchTime = (double)(clock() - begin) / CLOCKS_PER_SEC * 1000;
+				printf("Number of values found: %d | Searching time: %.4f seconds. \n", values, searchTime);
 				fclose(fp);
 			}
 			
