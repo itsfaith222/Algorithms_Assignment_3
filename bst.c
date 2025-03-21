@@ -39,8 +39,8 @@ int main()
 	
 	int choice, num;
 	int count = 0;
-	clock_t start;
-    double executionTime;
+	clock_t start, begin;
+    double executionTime, searchTime;
     FILE *fp;
 
 	//for each choice make a loop that iterates between these numbers for n
