@@ -42,6 +42,7 @@ int main()
 	clock_t start, begin;
     double executionTime, searchTime;
     FILE *fp;
+	BSTREE match; //pointer for when I am searching trees for numbers
 
 	//for each choice make a loop that iterates between these numbers for n
 	int inputs[] = {20000, 40000, 60000, 80000, 100000};
@@ -70,6 +71,35 @@ int main()
 				//calculate and display execution time
 				executionTime = (double)(clock() - start) / CLOCKS_PER_SEC * 1000;
 				printf("Time taken to insert %d numbers: %.4f seconds\n", inputs[i], executionTime);
+
+				//Question 3 of assignment
+				begin = clock(); // start the timer
+				count = 0; // reset count to keep tract of the numbers being inserted from file
+				int values = 0;
+
+				//open file to search from 
+				fp = fopen("searchList.txt", "r");
+
+				//if file is null
+				if (fp == NULL) {
+					printf("Error opening file\n");
+					return 1;
+				}
+	
+				printf("Searching tree: ");
+				//search for the number from the file 
+				while(count < inputs[i] && fscanf(fp, "%d", &num) == 1){
+					match = find(root, num);
+					if (match != NULL){
+						values += 1;
+					}
+					count ++;
+				}
+	
+				//print the amount of matches found
+				searchTime = (double)(clock() - begin) / CLOCKS_PER_SEC * 1000;
+				printf("Number of values found: %d | Execution time: %.4f seconds. \n", values, searchTime);
+				fclose(fp);
 
 
 			}
