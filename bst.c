@@ -98,7 +98,7 @@ int main()
 	
 				//print the amount of matches found
 				searchTime = (double)(clock() - begin) / CLOCKS_PER_SEC * 1000;
-				printf("Number of values found: %d | Execution time: %.4f seconds. \n", values, searchTime);
+				printf("Number of values found: %d | Searching time: %.4f seconds. \n", values, searchTime);
 				fclose(fp);
 
 
@@ -166,7 +166,7 @@ int main()
 	
 				//print the amount of matches found
 				searchTime = (double)(clock() - begin) / CLOCKS_PER_SEC * 1000;
-				printf("Number of values found: %d | Execution time: %.4f seconds. \n", values, searchTime);
+				printf("Number of values found: %d | Searching time: %.4f seconds. \n", values, searchTime);
 				fclose(fp);
 			}
 			printf("\n"); // empty line to separate each input being ran
